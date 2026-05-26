@@ -10,6 +10,7 @@ export const personalInfo = {
   ],
   bio: "BSc Hons. Computer Science student at University of Peradeniya, passionate about building things that span from browser to silicon. I design and ship full-stack web applications, train deep learning models, implement cryptographic protocols, and program autonomous hardware systems.",
   email: "smathiesha@gmail.com",
+  emailLink: "https://mail.google.com/mail/?view=cm&to=smathiesha@gmail.com",
   github: "https://github.com/SashenM001",
   cvPath: "/Sashen_Matheesha_CV.pdf",
   location: "Peradeniya, Sri Lanka",
