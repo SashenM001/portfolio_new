@@ -53,8 +53,6 @@ export function ContactSection() {
         >
           <motion.a
             href={`mailto:${personalInfo.email}`}
-            target="_blank"
-            rel="noopener noreferrer"
             whileHover={{ scale: 1.05, boxShadow: "0 8px 32px var(--accent-glow)" }}
             whileTap={{ scale: 0.97 }}
             className="flex items-center gap-2.5 px-8 py-4 rounded-full text-sm font-semibold w-full sm:w-auto justify-center"

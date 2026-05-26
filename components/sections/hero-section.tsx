@@ -163,8 +163,6 @@ export function HeroSection() {
 
               <motion.a
                 href={`mailto:${personalInfo.email}`}
-                target="_blank"
-                rel="noopener noreferrer"
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
                 className="px-6 py-3 rounded-full text-sm font-semibold flex items-center gap-2 transition-colors duration-200"
