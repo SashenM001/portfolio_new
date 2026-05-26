@@ -79,7 +79,7 @@ export const projects = [
       "Official website for the AIESEC University of Peradeniya chapter. Lightweight, responsive, and SEO-friendly organisational web presence.",
     tech: ["JavaScript", "CSS", "Next.js"],
     github: "https://github.com/SashenM001/AIESEC_in_Kandy",
-    demo: "https://aiesec-in-kandy.vercel.app",
+    demo: "https://uop.aiesec.lk/",
     featured: false,
   },
   {
