@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sashen Matheesha — Portfolio
+
+Personal portfolio website showcasing projects across full-stack web development, machine learning, cryptography, and embedded systems.
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 16 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS v4 |
+| Animations | Framer Motion |
+| Components | shadcn/ui + Radix UI |
+| Theming | next-themes (dark / light toggle) |
+| Fonts | Geist Sans / Geist Mono |
+| Deployment | Vercel |
+
+## Features
+
+- **Custom cursor** — animated blue dot with trailing ring
+- **Scroll progress bar** — gradient line at the top of the viewport
+- **Animated hero** — typewriter role switcher, 3D-tilt photo, spinning gradient ring
+- **Scroll-triggered sections** — every section fades in on scroll using `useInView`
+- **Projects grid** — filterable by category (Web Dev / ML AI / Security / Embedded) with hover glow
+- **Skills explorer** — tabbed categories with animated pill tags
+- **Dark / light toggle** — persistent theme via `next-themes`
+- **CV download** — one-click PDF from the navbar
+- **Fully responsive** — mobile drawer nav, adaptive grid layouts
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# → http://localhost:3000
+
+# Production build
+npm run build
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+app/
+  layout.tsx          # Root layout with ThemeProvider + metadata
+  page.tsx            # Assembles all sections
+  globals.css         # CSS variables, dot-grid, glow utilities
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+components/
+  navbar.tsx          # Fixed nav with scroll-blur, theme toggle, CV download
+  custom-cursor.tsx   # Blue dot cursor with spring physics
+  scroll-progress.tsx # Gradient scroll indicator bar
+  footer.tsx
+  icons.tsx           # Custom GitHub SVG icon
+  sections/
+    hero-section.tsx
+    about-section.tsx
+    skills-section.tsx
+    projects-section.tsx
+    contact-section.tsx
 
-## Learn More
+lib/
+  data.ts             # All content — projects, skills, education, experience
+  utils.ts            # cn() helper
 
-To learn more about Next.js, take a look at the following resources:
+public/
+  profile.jpg
+  Sashen_Matheesha_CV.pdf
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Customisation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+All content lives in `lib/data.ts` — update projects, skills, education, and personal info there without touching any component.
 
-## Deploy on Vercel
+## Deploy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Push to GitHub and import the repo on [vercel.com](https://vercel.com). No environment variables required.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+Built with Next.js · Framer Motion · Tailwind CSS
