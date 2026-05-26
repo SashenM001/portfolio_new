@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- head -->
+  <circle cx="50" cy="18" r="13" fill="none" stroke="#60a5fa" stroke-width="7" stroke-linecap="round"/>
+  <!-- body -->
+  <line x1="50" y1="31" x2="50" y2="64" stroke="#60a5fa" stroke-width="7" stroke-linecap="round"/>
+  <!-- left arm raised (waving) -->
+  <line x1="50" y1="44" x2="18" y2="28" stroke="#60a5fa" stroke-width="7" stroke-linecap="round"/>
+  <!-- right arm down -->
+  <line x1="50" y1="44" x2="78" y2="58" stroke="#60a5fa" stroke-width="7" stroke-linecap="round"/>
+  <!-- left leg -->
+  <line x1="50" y1="64" x2="28" y2="93" stroke="#60a5fa" stroke-width="7" stroke-linecap="round"/>
+  <!-- right leg -->
+  <line x1="50" y1="64" x2="72" y2="93" stroke="#60a5fa" stroke-width="7" stroke-linecap="round"/>
+</svg>
