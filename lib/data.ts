@@ -10,7 +10,7 @@ export const personalInfo = {
   ],
   bio: "BSc Hons. Computer Science student at University of Peradeniya, passionate about building things that span from browser to silicon. I design and ship full-stack web applications, train deep learning models, implement cryptographic protocols, and program autonomous hardware systems.",
   email: "smathiesha@gmail.com",
-  emailLink: "https://mail.google.com/mail/?view=cm&to=smathiesha@gmail.com",
+  emailLink: "https://mail.google.com/mail/?view=cm&to=smathiesha@gmail.com&su=Let%27s%20Connect%20%E2%80%94%20Saw%20Your%20Portfolio&body=Hi%20Sashen%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20I%27d%20love%20to%20connect%20with%20you.%0A%0A%5BWrite%20your%20message%20here%5D%0A%0ABest%20regards%2C%0A%5BYour%20Name%5D",
   github: "https://github.com/SashenM001",
   cvPath: "/Sashen_Matheesha_CV.pdf",
   location: "Peradeniya, Sri Lanka",
