@@ -29,9 +29,10 @@ export function AboutSection() {
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={{ opacity: 0, y: 28, rotateX: 35 }}
+          animate={inView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
           transition={{ duration: 0.55 }}
+          style={{ transformPerspective: 800, transformOrigin: "bottom" }}
           className="mb-14"
         >
           <SectionLabel>About Me</SectionLabel>
@@ -50,7 +51,7 @@ export function AboutSection() {
               className="text-base leading-relaxed mb-6"
               style={{ color: "var(--muted)" }}
             >
-              I'm a Computer Science undergraduate at the University of Peradeniya, Sri Lanka, with a passion for building things that span from browser to silicon. I combine strong software engineering fundamentals with hands-on experience across multiple domains — web, AI, cryptography, and embedded systems.
+              I&apos;m a Computer Science undergraduate at the University of Peradeniya, Sri Lanka, with a passion for building things that span from browser to silicon. I combine strong software engineering fundamentals with hands-on experience across multiple domains — web, AI, cryptography, and embedded systems.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 24 }}
@@ -59,7 +60,7 @@ export function AboutSection() {
               className="text-base leading-relaxed mb-8"
               style={{ color: "var(--muted)" }}
             >
-              Outside of code, I serve as Vice President at AIESEC and have contributed to youth empowerment through STEMUp Educational Foundation. I'm also an active basketball player at both college and university level.
+              Outside of code, I serve as Vice President at AIESEC and have contributed to youth empowerment through STEMUp Educational Foundation. I&apos;m also an active basketball player at both college and university level.
             </motion.p>
 
             {/* Location */}

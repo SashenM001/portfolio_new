@@ -188,29 +188,3 @@ export const skills = {
   ],
 };
 
-export const leadership = [
-  {
-    role: "Developer",
-    org: "AIESEC in Sri Lanka",
-    description:
-      "Engineered and maintained national web platforms and digital initiatives for AIESEC operations across Sri Lanka.",
-  },
-  {
-    role: "Local Committee Vice President — Incoming Global Talent B2B & Value Delivery (25.26)",
-    org: "AIESEC in University of Peradeniya",
-    description:
-      "Leading strategic B2B partnerships and driving impactful cross-cultural exchange programs at the local chapter.",
-  },
-  {
-    role: "Organising Committee Vice President — Trailblazers 2024",
-    org: "AIESEC in University of Peradeniya",
-    description:
-      "Led organising committee for the flagship youth leadership conference empowering university students through experiential learning.",
-  },
-  {
-    role: "Volunteer — IT & IoT Literacy",
-    org: "STEMUp Educational Foundation",
-    description:
-      "Conducted interactive programming and IoT sessions for children in rural communities to bridge the digital divide.",
-  },
-];

@@ -1,10 +1,18 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useTransform,
+  useReducedMotion,
+  useScroll,
+} from "framer-motion";
 import Image from "next/image";
 import { ArrowDown, Mail } from "lucide-react";
 import { GithubIcon } from "@/components/icons";
+import { AuroraBackground } from "@/components/ui/aurora-background";
+import { LiquidButton } from "@/components/ui/liquid-glass-button";
 import { personalInfo } from "@/lib/data";
 
 const roles = personalInfo.roles;
@@ -14,8 +22,10 @@ function TypewriterRoles() {
   const [displayed, setDisplayed] = useState("");
   const [deleting, setDeleting] = useState(false);
   const [paused, setPaused] = useState(false);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
+    if (reduceMotion) return;
     const current = roles[roleIdx];
     if (paused) {
       const t = setTimeout(() => { setPaused(false); setDeleting(true); }, 1800);
@@ -26,18 +36,27 @@ function TypewriterRoles() {
       return () => clearTimeout(t);
     }
     if (!deleting && displayed.length === current.length && !paused) {
-      setPaused(true);
-      return;
+      const t = setTimeout(() => setPaused(true), 0);
+      return () => clearTimeout(t);
     }
     if (deleting && displayed.length > 0) {
       const t = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 35);
       return () => clearTimeout(t);
     }
     if (deleting && displayed.length === 0) {
-      setDeleting(false);
-      setRoleIdx((i) => (i + 1) % roles.length);
+      const t = setTimeout(() => {
+        setDeleting(false);
+        setRoleIdx((i) => (i + 1) % roles.length);
+      }, 0);
+      return () => clearTimeout(t);
     }
-  }, [displayed, deleting, paused, roleIdx]);
+  }, [displayed, deleting, paused, roleIdx, reduceMotion]);
+
+  if (reduceMotion) {
+    return (
+      <span style={{ color: "var(--accent)" }}>{roles.join(" · ")}</span>
+    );
+  }
 
   return (
     <span className="inline-flex items-center gap-1" style={{ color: "var(--accent)" }}>
@@ -58,11 +77,24 @@ export function HeroSection() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const photoRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
   const rotateX = useTransform(mouseY, [-200, 200], [6, -6]);
   const rotateY = useTransform(mouseX, [-200, 200], [-6, 6]);
 
+  // Scroll-out parallax: text and photo drift at different rates and fade
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const textY = useTransform(scrollYProgress, [0, 1], [0, 160]);
+  const photoParallaxY = useTransform(scrollYProgress, [0, 1], [0, 80]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
+  const photoScale = useTransform(scrollYProgress, [0, 1], [1, 0.85]);
+
   useEffect(() => {
+    // Tilt effect only makes sense on hover-capable (pointer) devices
+    if (!window.matchMedia("(hover: hover)").matches) return;
     const move = (e: MouseEvent) => {
       const el = photoRef.current;
       if (!el) return;
@@ -77,24 +109,15 @@ export function HeroSection() {
   }, [mouseX, mouseY]);
 
   return (
-    <section
-      id="hero"
-      className="relative min-h-screen flex items-center dot-grid overflow-hidden"
-    >
-      {/* Ambient glow blobs */}
-      <div
-        className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none"
-        style={{ background: "var(--accent-subtle)", opacity: 0.6 }}
-      />
-      <div
-        className="absolute -bottom-20 -right-20 w-[400px] h-[400px] rounded-full blur-[100px] pointer-events-none"
-        style={{ background: "rgba(167,139,250,0.08)", opacity: 0.5 }}
-      />
-
-      <div className="max-w-6xl mx-auto px-6 w-full py-28 md:py-0">
+    <section id="hero" ref={sectionRef} className="relative overflow-hidden">
+      <AuroraBackground className="min-h-screen w-full">
+      <div className="relative max-w-6xl mx-auto px-6 w-full py-28 md:py-0">
         <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
           {/* Left — Text */}
-          <div className="order-2 md:order-1">
+          <motion.div
+            className="order-2 md:order-1"
+            style={{ y: textY, opacity: heroOpacity }}
+          >
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -117,9 +140,9 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease, delay: 0.1 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-4"
+              className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-4"
             >
-              <span style={{ color: "var(--foreground)" }}>Hi, I'm{" "}</span>
+              <span style={{ color: "var(--foreground)" }}>Hi, I&apos;m{" "}</span>
               <span className="gradient-text">Sashen</span>
             </motion.h1>
 
@@ -161,22 +184,16 @@ export function HeroSection() {
                 View Projects
               </motion.button>
 
-              <motion.a
-                href={personalInfo.emailLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.97 }}
-                className="px-6 py-3 rounded-full text-sm font-semibold flex items-center gap-2 transition-colors duration-200"
-                style={{
-                  background: "var(--surface)",
-                  border: "1px solid var(--border)",
-                  color: "var(--foreground)",
-                }}
+              <LiquidButton
+                size="lg"
+                className="rounded-full text-sm font-semibold min-h-11"
+                onClick={() =>
+                  window.open(personalInfo.emailLink, "_blank", "noopener,noreferrer")
+                }
               >
                 <Mail size={14} />
                 Get in Touch
-              </motion.a>
+              </LiquidButton>
             </motion.div>
 
             {/* Social quick links */}
@@ -198,15 +215,19 @@ export function HeroSection() {
                 github.com/SashenM001
               </motion.a>
             </motion.div>
-          </div>
+          </motion.div>
 
-          {/* Right — Photo */}
+          {/* Right — Photo (outer layer: scroll parallax; inner: entrance) */}
+          <motion.div
+            className="order-1 md:order-2 flex justify-center"
+            style={{ y: photoParallaxY, scale: photoScale, opacity: heroOpacity }}
+          >
           <motion.div
             ref={photoRef}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3, ease }}
-            className="order-1 md:order-2 flex justify-center"
+            className="flex justify-center"
             style={{ perspective: "800px" }}
           >
             <motion.div
@@ -262,6 +283,7 @@ export function HeroSection() {
               </motion.div>
             </motion.div>
           </motion.div>
+          </motion.div>
         </div>
       </div>
 
@@ -286,6 +308,7 @@ export function HeroSection() {
           <ArrowDown size={16} />
         </motion.div>
       </motion.div>
+      </AuroraBackground>
     </section>
   );
 }

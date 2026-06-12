@@ -17,10 +17,11 @@ export function CustomCursor() {
   const trailY = useSpring(mouseY, { damping: 35, stiffness: 150 });
 
   useEffect(() => {
-    const isTouchDevice =
-      typeof window !== "undefined" &&
-      window.matchMedia("(hover: none)").matches;
-    if (isTouchDevice) return;
+    const isTouchDevice = window.matchMedia("(hover: none)").matches;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (isTouchDevice || prefersReducedMotion) return;
 
     const move = (e: MouseEvent) => {
       mouseX.set(e.clientX);
