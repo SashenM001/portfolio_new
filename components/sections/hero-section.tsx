@@ -13,7 +13,16 @@ import { ArrowDown, Mail } from "lucide-react";
 import { GithubIcon } from "@/components/icons";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { LiquidButton } from "@/components/ui/liquid-glass-button";
+import { FloatingParticles } from "@/components/ui/floating-particles";
 import { personalInfo } from "@/lib/data";
+
+const floatingPills = [
+  { label: "React",      top: "12%", left: "-10%", delay: 0    },
+  { label: "Next.js",    top: "72%", left: "-8%",  delay: 1.2  },
+  { label: "PyTorch",    top: "20%", right: "-8%", delay: 0.6  },
+  { label: "TypeScript", top: "65%", right: "-12%",delay: 1.8  },
+  { label: "Arduino",    top: "88%", left: "20%",  delay: 2.4  },
+];
 
 const roles = personalInfo.roles;
 
@@ -111,6 +120,19 @@ export function HeroSection() {
   return (
     <section id="hero" ref={sectionRef} className="relative overflow-hidden">
       <AuroraBackground className="min-h-screen w-full">
+      {/* Higgsfield AI-generated background */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <Image
+          src="/hero-bg.png"
+          alt=""
+          fill
+          className="object-cover opacity-[0.12] dark:opacity-[0.18] mix-blend-screen"
+          priority
+          sizes="100vw"
+        />
+      </div>
+      {/* Animated particle field */}
+      <FloatingParticles count={60} />
       <div className="relative max-w-6xl mx-auto px-6 w-full py-28 md:py-0">
         <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
           {/* Left — Text */}
@@ -125,13 +147,14 @@ export function HeroSection() {
               className="mb-4"
             >
               <span
-                className="inline-block px-3 py-1 text-xs font-semibold tracking-widest uppercase rounded-full"
+                className="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold tracking-widest uppercase rounded-full animate-glow-pulse"
                 style={{
                   background: "var(--accent-subtle)",
                   color: "var(--accent)",
                   border: "1px solid var(--accent-glow)",
                 }}
               >
+                <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
                 Available for opportunities
               </span>
             </motion.div>
@@ -227,9 +250,38 @@ export function HeroSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3, ease }}
-            className="flex justify-center"
+            className="flex justify-center relative"
             style={{ perspective: "800px" }}
           >
+            {/* Floating tech pills */}
+            {floatingPills.map((pill) => (
+              <motion.div
+                key={pill.label}
+                className="absolute hidden md:flex items-center tech-pill px-3 py-1.5 rounded-full text-[11px] font-semibold whitespace-nowrap z-10"
+                style={{
+                  top: pill.top,
+                  left: "left" in pill ? pill.left : undefined,
+                  right: "right" in pill ? pill.right : undefined,
+                  background: "color-mix(in srgb, var(--surface) 70%, transparent)",
+                  border: "1px solid var(--accent-glow)",
+                  color: "var(--accent)",
+                  boxShadow: "0 4px 16px var(--accent-glow)",
+                }}
+                initial={{ opacity: 0, scale: 0.7 }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                  y: [0, -8, 0],
+                }}
+                transition={{
+                  opacity: { delay: pill.delay + 1, duration: 0.5 },
+                  scale: { delay: pill.delay + 1, duration: 0.5 },
+                  y: { delay: pill.delay + 1.5, duration: 4 + pill.delay * 0.5, repeat: Infinity, ease: "easeInOut" },
+                }}
+              >
+                {pill.label}
+              </motion.div>
+            ))}
             <motion.div
               style={{ rotateX, rotateY }}
               className="relative"
@@ -269,14 +321,17 @@ export function HeroSection() {
               {/* Floating badge */}
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.9 }}
+                animate={{ opacity: 1, y: [0, -6, 0] }}
+                transition={{
+                  opacity: { delay: 0.9, duration: 0.5 },
+                  y: { delay: 1.5, duration: 3.5, repeat: Infinity, ease: "easeInOut" },
+                }}
                 className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap"
                 style={{
                   background: "var(--surface)",
-                  border: "1px solid var(--border)",
+                  border: "1px solid var(--accent-glow)",
                   color: "var(--foreground)",
-                  boxShadow: "0 4px 20px rgba(0,0,0,0.15)",
+                  boxShadow: "0 4px 20px var(--accent-glow)",
                 }}
               >
                 CS @ University of Peradeniya

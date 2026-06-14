@@ -160,13 +160,24 @@ export const projects = [
     demo: null,
     featured: true,
   },
+  {
+    id: 11,
+    title: "Post-Quantum V2X Authentication",
+    category: "Security" as ProjectCategory,
+    description:
+      "Honours research project analysing the scalability of hybrid classical/post-quantum authentication schemes in high-density V2X vehicular networks. Evaluated latency, throughput, and authentication overhead across simulated dense environments.",
+    tech: ["Python", "CRYSTALS-Kyber", "CRYSTALS-Dilithium", "V2X Protocols", "Post-Quantum Cryptography"],
+    github: null,
+    demo: null,
+    featured: true,
+  },
 ];
 
 export const skills = {
   "Web Dev": [
-    "React", "Next.js", "TypeScript", "JavaScript",
+    "React", "Next.js", "TypeScript", "JavaScript", "Java",
     "TailwindCSS", "Node.js", "Express.js", "Spring Boot",
-    "PostgreSQL", "MySQL", "Prisma", "REST APIs",
+    "PostgreSQL", "MySQL", "PL/pgSQL", "Prisma", "REST APIs",
     "Docker", "Vercel", "GitHub Actions",
   ],
   "ML / AI": [
@@ -177,8 +188,8 @@ export const skills = {
   ],
   "Security": [
     "ECDSA P-256", "ECIES", "Shamir Secret Sharing",
-    "SHA-256 Hash Chains", "JWT", "BCrypt",
-    "OAuth Concepts", "Zero-Knowledge Proofs",
+    "SHA-256 Hash Chains", "CRYSTALS-Kyber", "CRYSTALS-Dilithium",
+    "JWT", "BCrypt", "OAuth Concepts", "Zero-Knowledge Proofs",
   ],
   "Embedded": [
     "Arduino Mega 2560", "C++", "DHT11 Sensors",

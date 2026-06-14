@@ -148,23 +148,36 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
 
       {/* Links */}
       <div className="flex items-center gap-3">
-        <motion.a
-          href={project.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.97 }}
-          className="flex items-center gap-1.5 text-xs font-medium px-4 py-2.5 rounded-full transition-colors duration-200"
-          style={{
-            background: "var(--background)",
-            border: "1px solid var(--border)",
-            color: "var(--foreground)",
-          }}
-          aria-label={`View source code of ${project.title} on GitHub`}
-        >
-          <GithubIcon size={12} />
-          Code
-        </motion.a>
+        {project.github ? (
+          <motion.a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
+            className="flex items-center gap-1.5 text-xs font-medium px-4 py-2.5 rounded-full transition-colors duration-200"
+            style={{
+              background: "var(--background)",
+              border: "1px solid var(--border)",
+              color: "var(--foreground)",
+            }}
+            aria-label={`View source code of ${project.title} on GitHub`}
+          >
+            <GithubIcon size={12} />
+            Code
+          </motion.a>
+        ) : (
+          <span
+            className="flex items-center gap-1.5 text-xs font-medium px-4 py-2.5 rounded-full"
+            style={{
+              background: "var(--background)",
+              border: "1px solid var(--border)",
+              color: "var(--muted)",
+            }}
+          >
+            Research
+          </span>
+        )}
         {project.demo && (
           <motion.a
             href={project.demo}

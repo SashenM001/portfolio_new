@@ -8,6 +8,7 @@ import {
   animate,
   useReducedMotion,
 } from "framer-motion";
+import Image from "next/image";
 import { Zap, BrainCircuit, ShieldCheck, Cpu, type LucideIcon } from "lucide-react";
 import { skills } from "@/lib/data";
 
@@ -72,6 +73,16 @@ export function SkillsSection() {
     >
       {/* Subtle grid */}
       <div className="absolute inset-0 dot-grid opacity-40" />
+      {/* Higgsfield AI-generated background */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        <Image
+          src="/skills-bg.png"
+          alt=""
+          fill
+          className="object-cover opacity-[0.07] dark:opacity-[0.1] mix-blend-screen"
+          sizes="100vw"
+        />
+      </div>
 
       <div className="relative max-w-6xl mx-auto px-6">
         {/* Header */}

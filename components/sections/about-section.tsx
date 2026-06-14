@@ -42,21 +42,25 @@ export function AboutSection() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 items-start">
-          {/* Left — Bio */}
-          <div>
+          {/* Left — Bio (slides in from left) */}
+          <motion.div
+            initial={{ opacity: 0, x: -60 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.75, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+          >
             <motion.p
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 28 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.55, delay: 0.1 }}
+              transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               className="text-base leading-relaxed mb-6"
               style={{ color: "var(--muted)" }}
             >
               I&apos;m a Computer Science undergraduate at the University of Peradeniya, Sri Lanka, with a passion for building things that span from browser to silicon. I combine strong software engineering fundamentals with hands-on experience across multiple domains — web, AI, cryptography, and embedded systems.
             </motion.p>
             <motion.p
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 28 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.55, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.32, ease: [0.22, 1, 0.36, 1] }}
               className="text-base leading-relaxed mb-8"
               style={{ color: "var(--muted)" }}
             >
@@ -65,19 +69,24 @@ export function AboutSection() {
 
             {/* Location */}
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.55, delay: 0.3 }}
+              transition={{ duration: 0.5, delay: 0.44, ease: [0.22, 1, 0.36, 1] }}
               className="flex items-center gap-2 text-sm"
               style={{ color: "var(--muted)" }}
             >
               <MapPin size={14} style={{ color: "var(--accent)" }} />
               {personalInfo.location}
             </motion.div>
-          </div>
+          </motion.div>
 
-          {/* Right — Education + Experience */}
-          <div className="space-y-6">
+          {/* Right — Education + Experience (slides in from right) */}
+          <motion.div
+            className="space-y-6"
+            initial={{ opacity: 0, x: 60 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          >
             {/* Education */}
             <motion.div
               initial={{ opacity: 0, y: 28 }}
@@ -171,7 +180,7 @@ export function AboutSection() {
                 ))}
               </div>
             </motion.div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
