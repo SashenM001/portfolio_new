@@ -1,6 +1,8 @@
-# Sashen Matheesha — Portfolio
+# Sashen Matheesha — SIGNAL
 
-Personal portfolio website showcasing projects across full-stack web development, machine learning, cryptography, and embedded systems.
+> An immersive portfolio experience: from browser to silicon.
+
+Cinematic single-page portfolio showcasing projects across full-stack web development, machine learning, cryptography, and embedded systems — built as one continuous scrolling journey with a living "signal field" animation system.
 
 ---
 
@@ -11,63 +13,60 @@ Personal portfolio website showcasing projects across full-stack web development
 | Framework | Next.js 16 (App Router) |
 | Language | TypeScript |
 | Styling | Tailwind CSS v4 |
-| Animations | Framer Motion |
-| Components | shadcn/ui + Radix UI |
-| Theming | next-themes (dark / light toggle) |
-| Fonts | Geist Sans / Geist Mono |
+| Scroll | Lenis smooth scroll + GSAP ScrollTrigger |
+| Motion | Framer Motion (springs, split-text, shared layout) |
+| Signature FX | Canvas 2D particle signal field |
+| Fonts | Space Grotesk (display) · Geist Sans · Geist Mono |
 | Deployment | Vercel |
 
-## Features
+## The Experience
 
-- **Custom cursor** — animated blue dot with trailing ring
-- **Scroll progress bar** — gradient line at the top of the viewport
-- **Animated hero** — typewriter role switcher, 3D-tilt photo, spinning gradient ring
-- **Scroll-triggered sections** — every section fades in on scroll using `useInView`
-- **Projects grid** — filterable by category (Web Dev / ML AI / Security / Embedded) with hover glow
-- **Skills explorer** — tabbed categories with animated pill tags
-- **Dark / light toggle** — persistent theme via `next-themes`
-- **CV download** — one-click PDF from the navbar
-- **Fully responsive** — mobile drawer nav, adaptive grid layouts
+- **Cinematic preloader** — monogram, phase words (BROWSER → MODELS → CIPHERS → SILICON), charged signal line
+- **Signal field** — a persistent particle constellation behind every scene; it evolves with scroll progress, leans away from the cursor, and energizes with scroll velocity
+- **Letter-by-letter hero** — giant display type with idle breathing, rotating role ticker, spring CTAs
+- **Velocity marquee** — typographic current that accelerates and reverses with your scrolling
+- **About scene** — parallax portrait with scanline sweep, mask reveals, layered fact cards
+- **Journey timeline** — connecting line that grows as you travel, with a glowing pulse riding it
+- **Arsenal** — four tilting domain modules (Web / Neural / Cipher / Silicon) with pointer spotlights and count-up stats
+- **Works exhibition** — featured projects as full-width exhibits: outlined titles that fill on hover, sheen sweeps, cascading tech stacks, plus a tilt-card archive
+- **Transmit** — floating glass contact form (opens Gmail compose — nothing stored), copy-email, availability pulse
+- **Finale** — closing-title watermark and a conic-glow orb that loops you back to the top
+- **Cursor system** — instant dot, spring-lagged ring, ghost trail, and a labelled VIEW disc over projects
+- **Accessible** — semantic regions, keyboard focus states, `prefers-reduced-motion` honoured everywhere
 
 ## Getting Started
 
 ```bash
-# Install dependencies
 npm install
-
-# Run development server
-npm run dev
-# → http://localhost:3000
-
-# Production build
-npm run build
-npm start
+npm run dev     # → http://localhost:3000
+npm run build   # production build
 ```
 
 ## Project Structure
 
 ```
 app/
-  layout.tsx          # Root layout with ThemeProvider + metadata
-  page.tsx            # Assembles all sections
-  globals.css         # CSS variables, dot-grid, glow utilities
+  layout.tsx            # Fonts (Space Grotesk / Geist) + metadata
+  page.tsx              # Assembles the journey
+  globals.css           # Design tokens, HUD/glass/grain utilities
 
 components/
-  navbar.tsx          # Fixed nav with scroll-blur, theme toggle, CV download
-  custom-cursor.tsx   # Blue dot cursor with spring physics
-  scroll-progress.tsx # Gradient scroll indicator bar
-  footer.tsx
-  icons.tsx           # Custom GitHub SVG icon
+  nav.tsx               # Floating glass nav — magnetic links, hide on scroll
+  icons.tsx
+  experience/
+    signal-field.tsx    # Signature canvas animation system
+    smooth-scroll.tsx   # Lenis wired into GSAP's ticker
+    preloader.tsx       # Cinematic entry sequence
+    cursor.tsx          # Multi-state custom cursor
+    magnetic.tsx        # Magnetic hover wrapper
+    reveal.tsx          # SplitText / Reveal / MaskReveal primitives
   sections/
-    hero-section.tsx
-    about-section.tsx
-    skills-section.tsx
-    projects-section.tsx
-    contact-section.tsx
+    hero.tsx  signal-strip.tsx  about.tsx  journey.tsx
+    arsenal.tsx  works.tsx  transmit.tsx  finale.tsx
 
 lib/
-  data.ts             # All content — projects, skills, education, experience
-  utils.ts            # cn() helper
+  data.ts               # ALL content — edit here to update the site
+  utils.ts
 
 public/
   profile.jpg
@@ -80,8 +79,8 @@ All content lives in `lib/data.ts` — update projects, skills, education, and p
 
 ## Deploy
 
-Push to GitHub and import the repo on [vercel.com](https://vercel.com). No environment variables required.
+Import the repo on [vercel.com](https://vercel.com) and set the project **Root Directory** to `portfolio-website`. No environment variables required.
 
 ---
 
-Built with Next.js · Framer Motion · Tailwind CSS
+Built with Next.js · GSAP · Lenis · Framer Motion · Tailwind CSS

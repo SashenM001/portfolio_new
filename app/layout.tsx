@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import { MotionProvider } from "@/components/motion-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,22 +12,30 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
-  title: "Sashen Matheesha — CS Student & Developer",
+  title: "Sashen Matheesha — Browser to Silicon",
   description:
-    "Portfolio of K.W. Sashen Matheesha — Full-Stack Developer, ML Engineer, and Security Researcher based in Sri Lanka.",
+    "Portfolio of K.W. Sashen Matheesha — Full-Stack Developer, ML Engineer, Security Researcher and Embedded Systems Builder based in Sri Lanka.",
   keywords: [
     "Sashen Matheesha",
     "portfolio",
     "computer science",
     "full stack developer",
     "machine learning",
+    "security",
+    "embedded systems",
     "Sri Lanka",
     "University of Peradeniya",
   ],
   authors: [{ name: "K.W. Sashen Matheesha" }],
   openGraph: {
-    title: "Sashen Matheesha — Portfolio",
+    title: "Sashen Matheesha — Browser to Silicon",
     description:
       "Full-Stack Developer · ML Engineer · Security Researcher · Embedded Systems Builder",
     type: "website",
@@ -37,10 +43,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f8fafc" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b0d12" },
-  ],
+  themeColor: "#05070a",
 };
 
 export default function RootLayout({
@@ -51,19 +54,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} antialiased`}
     >
-      <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          disableTransitionOnChange={false}
-        >
-          <MotionProvider>{children}</MotionProvider>
-        </ThemeProvider>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
