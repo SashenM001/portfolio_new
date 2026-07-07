@@ -81,33 +81,37 @@ export function About() {
               </span>
             </motion.div>
 
-            <MaskReveal className="rounded-2xl">
-              <motion.div style={{ y: imgY }} className="relative aspect-[4/5] overflow-hidden rounded-2xl group">
-                <Image
-                  src="/profile.jpg"
-                  alt="Portrait of Sashen Matheesha"
-                  fill
-                  priority
-                  sizes="(max-width: 768px) 90vw, 420px"
-                  className="object-cover object-center scale-110 grayscale transition-[filter,transform] duration-700 ease-out group-hover:grayscale-0 group-hover:scale-105"
-                />
-                {/* Cyan wash + scanline sweep */}
-                <div
-                  className="absolute inset-0 mix-blend-color opacity-30 transition-opacity duration-700 group-hover:opacity-0"
-                  style={{ background: "var(--accent)" }}
-                />
-                <motion.div
-                  aria-hidden="true"
-                  animate={{ y: ["-120%", "220%"] }}
-                  transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut", repeatDelay: 1.2 }}
-                  className="absolute inset-x-0 h-16 pointer-events-none"
-                  style={{
-                    background:
-                      "linear-gradient(180deg, transparent, rgba(34,211,238,0.14), transparent)",
-                  }}
-                />
-              </motion.div>
-            </MaskReveal>
+            <motion.div
+              initial={{ clipPath: "inset(0 0 100% 0)" }}
+              animate={{ clipPath: "inset(0 0 0% 0)" }}
+              style={{ y: imgY }}
+              transition={{ clipPath: { duration: 1, ease: EASE, delay: 0.2 } }}
+              className="relative aspect-[4/5] overflow-hidden rounded-2xl group"
+            >
+              <Image
+                src="/profile.jpg"
+                alt="Portrait of Sashen Matheesha"
+                fill
+                priority
+                sizes="(max-width: 768px) 90vw, 420px"
+                className="object-cover object-center scale-110 grayscale transition-[filter,transform] duration-700 ease-out group-hover:grayscale-0 group-hover:scale-105"
+              />
+              {/* Cyan wash + scanline sweep */}
+              <div
+                className="absolute inset-0 mix-blend-color opacity-30 transition-opacity duration-700 group-hover:opacity-0"
+                style={{ background: "var(--accent)" }}
+              />
+              <motion.div
+                aria-hidden="true"
+                animate={{ y: ["-120%", "220%"] }}
+                transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut", repeatDelay: 1.2 }}
+                className="absolute inset-x-0 h-16 pointer-events-none"
+                style={{
+                  background:
+                    "linear-gradient(180deg, transparent, rgba(34,211,238,0.14), transparent)",
+                }}
+              />
+            </motion.div>
           </div>
 
           {/* Story */}
